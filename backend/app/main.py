@@ -1,24 +1,12 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-
-print("fitur login")
+from app.routes import items
 
 app = FastAPI()
 
-class Item(BaseModel):
-    name: str
-    description: str = None
-
+# Health check / root endpoint
 @app.get("/")
 def root():
-    return {"message": "Backend Kelompok 4 Aktif"}
+    return {"message": "Backend 1 aktif"}
 
-# Backend 1
-@app.get("/items")
-def get_items():
-    return {"data": ["item1", "item2", "item3"]}
-
-@app.post("/items")
-def create_item(item: Item):
-    return {"message": "Item berhasil dibuat", "item": item}
-
+# Include router dari items
+app.include_router(items.router)
