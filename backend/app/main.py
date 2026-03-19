@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from app.routes import items
 
-print("fitur login")
-
 app = FastAPI()
 
 # Health check / root endpoint
